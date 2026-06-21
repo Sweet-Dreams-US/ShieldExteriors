@@ -61,3 +61,50 @@ export function Avatar({ name, tone = '#11486d', size = 36 }: { name: string; to
     </span>
   )
 }
+
+export function Toggle({ on, onChange }: { on: boolean; onChange: () => void }) {
+  return (
+    <button onClick={onChange} aria-pressed={on} className={cn('relative h-6 w-11 shrink-0 rounded-full transition-colors', on ? 'bg-guard' : 'bg-ink-line')}>
+      <span className={cn('absolute top-0.5 h-5 w-5 rounded-full bg-bone shadow transition-transform', on ? 'translate-x-[22px]' : 'translate-x-0.5')} />
+    </button>
+  )
+}
+
+export function Tabs({ tabs, active, onChange }: { tabs: { id: string; label: string }[]; active: string; onChange: (id: string) => void }) {
+  return (
+    <div className="inline-flex flex-wrap gap-1 rounded-xl border border-ink-line bg-ink p-1">
+      {tabs.map((t) => (
+        <button key={t.id} onClick={() => onChange(t.id)} className={cn('rounded-lg px-3.5 py-1.5 text-[13px] font-semibold transition', active === t.id ? 'bg-amber text-ink' : 'text-bone/60 hover:text-bone')}>
+          {t.label}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+export function Bar({ label, value, max, display, tone = '#f5a623' }: { label: string; value: number; max: number; display: string; tone?: string }) {
+  return (
+    <div>
+      <div className="flex justify-between text-[13px]"><span className="text-bone/70">{label}</span><span className="font-bold text-bone">{display}</span></div>
+      <div className="mt-1.5 h-2.5 overflow-hidden rounded-full bg-ink"><div className="h-full rounded-full transition-all" style={{ width: `${Math.min(100, (value / max) * 100)}%`, background: tone }} /></div>
+    </div>
+  )
+}
+
+export function Progress({ done, total, tone = '#1f9d6b' }: { done: number; total: number; tone?: string }) {
+  const pct = total ? Math.round((done / total) * 100) : 0
+  return (
+    <div className="flex items-center gap-2">
+      <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-ink"><div className="h-full rounded-full" style={{ width: `${pct}%`, background: tone }} /></div>
+      <span className="tnum text-[11px] font-semibold text-bone/50">{done}/{total}</span>
+    </div>
+  )
+}
+
+export function SyncBadge({ connected }: { connected: boolean }) {
+  return (
+    <span className={cn('inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold', connected ? 'bg-guard/15 text-guard' : 'bg-ink text-bone/45')}>
+      <span className={cn('h-1.5 w-1.5 rounded-full', connected ? 'bg-guard' : 'bg-bone/30')} /> {connected ? 'Connected' : 'Connect'}
+    </span>
+  )
+}

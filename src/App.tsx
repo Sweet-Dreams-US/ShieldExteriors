@@ -32,6 +32,17 @@ import Pipeline from './admin/Pipeline'
 import Crew from './admin/Crew'
 import Schedule from './admin/Schedule'
 import Operations from './admin/Operations'
+import Canvassing from './admin/Canvassing'
+import Estimates from './admin/Estimates'
+import Production from './admin/Production'
+import Invoicing from './admin/Invoicing'
+import WarrantyRegistry from './admin/Warranty'
+import Marketing from './admin/Marketing'
+import Recruiting from './admin/Recruiting'
+import Automations from './admin/Automations'
+import Integrations from './admin/Integrations'
+import CustomerPortal from './admin/CustomerPortal'
+import FieldApp from './admin/FieldApp'
 
 export default function App() {
   return (
@@ -63,13 +74,26 @@ export default function App() {
         <Route path="free-inspection" element={<Landing variant="free" />} />
         <Route path="storm-damage" element={<Landing variant="storm" />} />
 
-        {/* Admin / crew portal */}
+        {/* Other "faces" of the OS */}
+        <Route path="portal" element={<CustomerPortal />} />
+        <Route path="field" element={<FieldApp />} />
+
+        {/* Shield OS — admin operating system */}
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="leads" element={<Leads />} />
+          <Route path="canvassing" element={<Canvassing />} />
           <Route path="pipeline" element={<Pipeline />} />
-          <Route path="crew" element={<Crew />} />
+          <Route path="estimates" element={<Estimates />} />
+          <Route path="production" element={<Production />} />
           <Route path="schedule" element={<Schedule />} />
+          <Route path="crew" element={<Crew />} />
+          <Route path="invoicing" element={<Invoicing />} />
+          <Route path="warranty" element={<WarrantyRegistry />} />
+          <Route path="marketing" element={<Marketing />} />
+          <Route path="recruiting" element={<Recruiting />} />
+          <Route path="automations" element={<Automations />} />
+          <Route path="integrations" element={<Integrations />} />
           <Route path="operations" element={<Operations />} />
         </Route>
 
