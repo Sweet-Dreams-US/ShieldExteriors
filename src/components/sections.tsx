@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   ShieldCheck, ArrowRight, Star, BadgeDollarSign, MapPin, Play, Plus, Minus,
-  CloudLightning, Wrench, Recycle, Sun, Quote,
+  CloudLightning, Wrench, Recycle, Sun, Quote, Clapperboard,
 } from 'lucide-react'
 import { Reveal, SectionHead, StatCounter, Stars, Eyebrow } from './ui'
 import { CtaButton } from './LeadModal'
@@ -178,7 +178,7 @@ export function WhyShield() {
 /* ----------------------------- Before / After slider ----------------------------- */
 export function BeforeAfterSlider({
   before = asset('assets/roof-old-drone.webp'),
-  after = asset('assets/roof-new-drone.webp'),
+  after = asset('assets/roof-after-matched.webp'),
 }: {
   before?: string
   after?: string
@@ -242,45 +242,38 @@ export function BeforeAfterSection() {
   )
 }
 
-/* ----------------------------- Brand video ----------------------------- */
+/* ----------------------------- Brand film (placeholder for the real shoot) ----------------------------- */
 export function BrandVideo() {
-  const ref = useRef<HTMLVideoElement>(null)
-  const [playing, setPlaying] = useState(false)
-  const toggle = () => {
-    const v = ref.current
-    if (!v) return
-    if (v.paused) {
-      v.play()
-      setPlaying(true)
-    } else {
-      v.pause()
-      setPlaying(false)
-    }
-  }
   return (
     <section className="relative overflow-hidden bg-ink py-20 text-bone grain">
       <div className="wrap relative">
         <Reveal>
-          <SectionHead light center eyebrow="Protected for Life" title="The film behind the promise" intro="Two minutes on why a Shield roof is the last roof you’ll ever think about." />
+          <SectionHead
+            light
+            center
+            eyebrow="Protected for Life"
+            title="The film behind the promise"
+            intro="Shield’s flagship brand film — produced and shot with the SweetDreams team — will live right here."
+          />
         </Reveal>
         <Reveal delay={0.1}>
           <div className="relative mx-auto mt-10 max-w-4xl overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
-            <video
-              ref={ref}
-              className="aspect-video w-full object-cover"
-              src={asset('assets/hero-roof.mp4')}
-              poster={asset('assets/roof-new-drone.webp')}
-              playsInline
-              loop
-              onClick={toggle}
-            />
-            {!playing && (
-              <button onClick={toggle} className="absolute inset-0 grid place-items-center bg-ink/30 transition hover:bg-ink/20" aria-label="Play">
-                <span className="anim-pulse-ring flex h-20 w-20 items-center justify-center rounded-full bg-amber text-ink">
+            <img src={asset('assets/home-hero-golden.webp')} alt="Shield brand film placeholder" className="aspect-video w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/40" />
+
+            <span className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-amber/40 bg-ink/70 px-3 py-1.5 text-[11.5px] font-bold uppercase tracking-wide text-amber backdrop-blur">
+              <Clapperboard size={14} /> Brand film · in production
+            </span>
+
+            <div className="absolute inset-0 grid place-items-center px-6 text-center">
+              <div>
+                <span className="anim-pulse-ring mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-amber text-ink">
                   <Play size={32} className="ml-1 fill-ink" />
                 </span>
-              </button>
-            )}
+                <div className="mt-5 h-display text-2xl sm:text-3xl">Your “Protected for Life” brand film</div>
+                <div className="mt-2 text-sm text-bone/70">We’re filming Shield’s flagship video next — it drops into this spot when it’s ready.</div>
+              </div>
+            </div>
           </div>
         </Reveal>
       </div>
